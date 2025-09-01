@@ -1,0 +1,22 @@
+@startuml Signup
+class Signup {
+  - formData: object
+  - loading: boolean
+  - error: string
+  - success: string
+  + handleChange(event): void
+  + handleSubmit(event): void
+}
+
+class AuthService {
+  + signupUser(userData): Promise
+}
+
+class AuthApi {
+  + signupApi(userData): Promise
+}
+
+Signup --> AuthService
+AuthService --> AuthApi
+
+@enduml

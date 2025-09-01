@@ -1,0 +1,57 @@
+@startuml
+title User - Previous Bookings Page Class Diagram
+
+class PreviousBookingsPage {
+    - bookings: Booking[]
+    - loading: boolean
+    - currentPage: number
+    - totalPages: number
+    - limit: number = 6
+    + fetchBookings(page: number): void
+    + handlePageChange(page: number): void
+}
+
+class Navbar {
+    + render(): JSX.Element
+}
+
+class BookingTable {
+    - expandedRow: number | null
+    + toggleExpand(id: number): void
+    + render(bookings: Booking[]): JSX.Element
+}
+
+class Pagination {
+    + currentPage: number
+    + totalPages: number
+    + onPageChange(page: number): void
+    + render(): JSX.Element
+}
+
+class FullScreenLoader {
+    + render(): JSX.Element
+}
+
+class Booking {
+    + booking_id: number
+    + bookind_date: string
+    + num_tickets: number
+    + total_amount: number | null
+    + status: string
+    + event: Event
+}
+
+class Event {
+    + title: string
+    + location: string
+    + event_date: string
+}
+
+PreviousBookingsPage --> Navbar
+PreviousBookingsPage --> BookingTable
+PreviousBookingsPage --> Pagination
+PreviousBookingsPage --> FullScreenLoader
+BookingTable --> Booking
+Booking --> Event
+
+@enduml

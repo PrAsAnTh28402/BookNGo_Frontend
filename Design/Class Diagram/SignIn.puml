@@ -1,0 +1,20 @@
+@startuml SignIn
+class Login {
+  - formData: object
+  - loading: boolean
+  - error: string
+  + handleChange(event): void
+  + handleSubmit(event): void
+}
+
+class AuthService {
+  + loginUser(credentials): Promise
+}
+
+class AuthApi {
+  + loginApi(credentials): Promise
+}
+
+Login --> AuthService
+AuthService --> AuthApi
+@enduml

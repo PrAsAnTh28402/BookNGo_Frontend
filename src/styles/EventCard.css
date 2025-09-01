@@ -1,0 +1,216 @@
+.event-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;  
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  transition: 0.3s ease;
+}
+
+
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Banner / Progress bar */
+.event-banner {
+  width: 100%;
+  height: 150px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.progress-donut {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+  margin: 0 auto;
+}
+
+/* Event Name */
+.event-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+  margin: 10px 0 5px 0;
+}
+
+/* Row flex layout */
+.event-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  color: #444;
+}
+
+/* Category styling */
+.event-category {
+  background: #f5f5f5;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Description */
+.event-description {
+  flex-grow: 1; 
+  margin-top: 10px;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Three dots / select menu */
+.event-card-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.event-card-actions select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Three dots button */
+.three-dots-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+  padding: 4px 6px;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+
+.three-dots-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  z-index: 10;
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+/* Container for dots + dropdown */
+.menu-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Three dots button */
+.three-dots-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+  padding: 4px 6px;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+  outline: none;
+}
+
+.three-dots-btn:focus {
+  outline: none;
+}
+
+.three-dots-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  min-width: 140px;
+  z-index: 20;
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Remaining slots */
+.event-slots {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.event-slots.low {
+  color: #d9534f; 
+  margin-bottom: 5px;
+}
+
+.event-slots.ok {
+  color: #28a745; 
+  margin-bottom: 5px;
+}
+
+@media (max-width: 480px) {
+  .event-card {
+    width: 90%;
+    padding: 12px;
+  }
+  .event-banner {
+    height: 150px;
+  }
+  .progress-donut {
+    width: 100px;
+    height: 100px;
+    font-size: 16px;
+  }
+}
+
+.event-date {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 8px;
+}

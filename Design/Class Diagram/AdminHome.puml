@@ -1,0 +1,75 @@
+@startuml
+' ===== Admin Landing Page – Class Diagram =====
+
+class AdminLandingPage {
+    - events: Event[]
+    - stats: Stats
+    - filters: FilterState
+    - page: int
+    - hasMore: boolean
+    + loadEvents()
+    + loadStats()
+    + handleFilterChange()
+    + openCreateEvent()
+    + openEditModal(eventId)
+    + handleDelete(eventId)
+}
+
+class Navbar {
+    - adminName: string
+    - links: string[]
+    + handleLogout()
+}
+
+class StatsBar {
+    - cards: StatsCard[]
+    + renderStats()
+}
+
+class FilterBar {
+    - searchQuery: string
+    - selectedCategory: string
+    - selectedStatus: string
+    - sortBy: string
+    + onSearchChange()
+    + onCategoryChange()
+    + onStatusChange()
+    + onSortChange()
+}
+
+class EventCard {
+    - eventId: string
+    - title: string
+    - date: string
+    - location: string
+    - capacity: int
+    - availableSeats: int
+    - status: string
+    + onEdit()
+    + onDelete()
+    + onView()
+}
+
+class EventProgressDonut {
+    - booked: int
+    - capacity: int
+    + calculateProgress()
+    + renderDonut()
+}
+
+class InfiniteScrollHandler {
+    - page: int
+    - hasMore: boolean
+    - loading: boolean
+    + observeScroll()
+}
+
+' ===== Relationships =====
+AdminLandingPage --> Navbar
+AdminLandingPage --> StatsBar
+AdminLandingPage --> FilterBar
+AdminLandingPage --> EventCard
+EventCard --> EventProgressDonut
+AdminLandingPage --> InfiniteScrollHandler
+
+@enduml

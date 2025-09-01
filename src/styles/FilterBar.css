@@ -1,0 +1,110 @@
+/* Common Filter Bar (used in both UserLandingPage and AdminLandingPage) */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+/* Search input container */
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 2;
+}
+
+.search-container input {
+  width: 150%;
+  padding: 8px 35px 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.search-container .search-button {
+  position: absolute;
+  right: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: black;
+  padding: 5px;
+  transition: transform 0.2s;
+}
+
+.search-container .search-button:hover {
+  transform: scale(1.1);
+}
+
+/* Category Dropdown */
+.filter-bar select {
+  flex: 1;                   
+  min-width: 150px;
+  max-width: 250px;
+  background-color: #ff6600; 
+  color: black;               
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  appearance: none;           
+  transition: background 0.2s, color 0.2s;
+}
+
+.filter-bar select:hover,
+.filter-bar select:focus {
+  background-color: #ff8533; 
+  outline: none;
+  color: black;
+}
+
+/* Dropdown options */
+.filter-bar select option {
+  background-color: #ff6600; 
+  color: black;             
+  font-size: 0.9rem;
+  padding: 6px;
+}
+
+/* Optional: make placeholder option slightly gray */
+.filter-bar select option[value="All"] {
+  color: #333;
+}
+
+.filterbar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filterbar-container label {
+  font-weight: bold;
+  color: #333;
+}
+
+.filterbar-dropdown {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.filterbar-dropdown:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+@media (max-width: 480px) {
+  .search-container input {
+    width: 100%;
+  }
+}

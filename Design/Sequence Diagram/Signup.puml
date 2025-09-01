@@ -1,0 +1,33 @@
+@startuml
+actor User
+participant SignupComponent as "Signup.jsx"
+participant AuthService
+participant AuthApi
+participant Backend
+
+User -> SignupComponent: open Signup page
+SignupComponent -> SignupComponent: initialize state (formData, loading, error, success)
+User -> SignupComponent: types in Name input
+SignupComponent -> SignupComponent: update formData.name
+User -> SignupComponent: types in Email input
+SignupComponent -> SignupComponent: update formData.email
+User -> SignupComponent: types in Password input
+SignupComponent -> SignupComponent: update formData.password
+User -> SignupComponent: clicks "Sign Up"
+SignupComponent -> SignupComponent: prevent default, set loading = true, error = ""
+SignupComponent -> AuthService: call signupUser(formData)
+AuthService -> AuthApi: call signupApi(formData)
+AuthApi -> Backend: POST /auth/signup with user data
+alt Backend returns 200 OK
+    Backend --> AuthApi: success response
+    AuthApi --> AuthService: response data
+    AuthService --> SignupComponent: resolve
+    SignupComponent -> SignupComponent: set success = "Signup successful", navigate("/login")
+else Backend returns 400 / error
+    Backend --> AuthApi: error response
+    AuthApi --> AuthService: reject with error message
+    AuthService --> SignupComponent: throw error
+    SignupComponent -> SignupComponent: set error = error message
+end
+SignupComponent -> SignupComponent: set loading = false
+@enduml

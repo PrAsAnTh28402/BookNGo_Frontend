@@ -1,0 +1,26 @@
+@startuml
+class SuccessPage {
+    - booking: Object
+    + render(): JSX
+}
+
+class TicketConfirmation {
+    + render(): JSX
+}
+
+class TicketDetails {
+    - booking: Object
+    + render(): JSX
+}
+
+class Button {
+    - label: string
+    - onClick: function
+    + render(): JSX
+}
+
+SuccessPage "1" --> "1" LeftVisual : contains
+SuccessPage "1" --> "1" RightDetails : contains
+RightDetails "1" --> "*" Button : contains multiple
+
+@enduml

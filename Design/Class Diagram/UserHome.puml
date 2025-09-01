@@ -1,0 +1,81 @@
+@startuml UserHome
+title User Landing Page - Class Diagram (BookNGo)
+
+class UserLandingPage {
+  - events: Event[]
+  - filters: Filter
+  - categories: Category[]
+  - page: number
+  - totalPages: number
+  - loading: boolean
+  - error: string
+  + useEffect()
+  + loadEvents(pageNumber, filters)
+  + loadCategories()
+  + handleFilterChange(newFilters)
+  + handlePageChange(newPage)
+  + render()
+}
+
+class UserNavbar {
+  + handleLogout()
+  + handleHomeClick()
+  + handleBookingsClick()
+  + render()
+}
+
+class UserEventGrid {
+  - events: Event[]
+  + render()
+}
+
+class UserEventCard {
+  - event: Event
+  + handleClick()
+  + render()
+}
+
+class FullScreenLoader {
+  + render()
+}
+
+class EventService {
+  + getEvents(page: number, filters: Filter): Event[]
+  + getCategories(): Category[]
+}
+
+class Event {
+  + event_id: number
+  + title: string
+  + description: string
+  + location: string
+  + event_date: Date
+  + category: string
+  + category_id: number
+  + image_url: string
+  + capacity: number
+  + available_seats: number
+  + is_active: boolean
+}
+
+class Category {
+  + category_id: number
+  + name: string
+}
+
+class Filter {
+  + searchQuery: string
+  + category: string
+  + sortBy: string
+}
+
+UserLandingPage --> UserNavbar
+UserLandingPage --> UserEventGrid
+UserLandingPage --> FullScreenLoader
+UserEventGrid --> UserEventCard
+UserLandingPage --> EventService
+UserEventCard --> Event
+UserLandingPage --> Category
+UserLandingPage --> Filter
+
+@enduml

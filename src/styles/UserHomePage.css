@@ -1,0 +1,278 @@
+/* Page background */
+.user-home-container {
+  background-color: #f0f0f0;
+  min-height: 100vh;
+  padding-bottom: 40px; 
+}
+
+/* Container for filters + grid */
+.event-grid-wrapper {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 12px;
+  max-width: 1200px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+
+/* Filter + Search Row */
+.filter-create-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Wrapper for search + filters */
+.filters-wrapper {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* FilterBar inputs */
+.filter-bar input[type="text"] {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.filter-bar select {
+  flex: 1;
+  min-width: 120px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Event grid */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* exactly 4 per row */
+  gap: 20px;
+  justify-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.pagination-container button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pagination-container button:hover {
+  background-color: #ffa500;
+  color: #fff;
+}
+
+.pagination-container button.active {
+  background-color: #ffa500;
+  color: #fff;
+  border-color: #ffa500;
+}
+
+/* Error message */
+.error {
+  color: red;
+  text-align: center;
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .filter-create-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .filters-wrapper {
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .filter-bar input[type="text"],
+  .filter-bar select {
+    width: 80%;
+  }
+}
+
+/* Container for search + filter */
+.search-filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+
+/* Search bar styling */
+.search-bar,
+.search-input { 
+  flex: 1;
+  min-width: 300px;                
+  max-width: calc(100% - 240px);   
+  height: 44px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+  background: #fff;
+    color: #333;              
+
+}
+
+
+.search-bar:focus {
+  border-color: #ff6600; 
+}
+
+/* Filter dropdown styling */
+.filter-dropdown {
+  width: 220px;      
+  min-width: 160px;
+  height: 44px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 16px;
+  outline: none;
+  color: #333;
+}
+
+
+.search-bar:focus,
+.filter-dropdown:focus {
+  border-color: #ff6600;
+  box-shadow: 0 0 0 3px rgba(255,102,0,0.08);
+}
+
+/* Ensure legacy wrapper classes don't break layout */
+.filter-create-row,
+.filters-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Responsive: stack vertically on narrow screens */
+@media (max-width: 768px) {
+  .search-filter-container,
+  .filter-create-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .search-bar { max-width: 100%; min-width: 0; }
+  .filter-dropdown { width: 100%; }
+}
+
+.filter-dropdown option {
+  color: #333;             
+  background-color: #fff;   
+}
+.search-bar:hover,
+.filter-dropdown:hover {
+  border-color: #ff8533; 
+}
+
+.search-bar::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.event-grid {
+  justify-items: center;
+  align-items: start;
+}
+
+.pagination-container button:hover {
+  background-color: #ff8533;
+  color: #fff;
+}
+.pagination-container button.active {
+  background-color: #ff6600;
+  color: #fff;
+  border: none; 
+}
+
+.error::before {
+  content: "⚠ ";
+  color: red;
+  font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  .search-bar,
+  .filter-dropdown {
+    width: 100%;
+  }
+  .event-grid {
+    grid-template-columns: 1fr; 
+  }
+}
+
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.event-card,
+.search-bar,
+.filter-dropdown,
+.pagination-container button {
+  transition: all 0.3s ease;
+}
+
+.event-grid-wrapper {
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 1024px) {
+  .event-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .event-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
+}

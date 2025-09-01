@@ -1,0 +1,227 @@
+/* ===== Page Container ===== */
+.admin-status-page {
+  background: #f5f7fb; /* softer background */
+  min-height: 100vh;
+  padding: 24px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+}
+
+.admin-status-container {
+  padding: 20px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== Page Heading ===== */
+.page-heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ===== Back Button ===== */
+.back-button {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 600;
+}
+.back-button:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  transform: translateY(-1px);
+}
+
+/* ===== Table Wrapper ===== */
+.table-container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.06);
+  overflow: hidden;
+}
+
+/* ===== Table Base ===== */
+.status-table,
+.booking-table,
+.bookings-table,
+.admin-status-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 14px;
+}
+
+/* Header */
+.status-table thead th,
+.booking-table thead th {
+  background: linear-gradient(135deg, #FF9A00);
+  color: white;
+  padding: 14px 12px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  word-wrap: break-word;
+}
+
+/* Cells */
+.status-table td,
+.booking-table td {
+  padding: 14px 12px;
+  text-align: center;
+  font-size: 14px;
+  color: #374151;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.2s ease;
+}
+
+/* Zebra Rows */
+.status-table tbody tr:nth-child(odd) {
+  background: #fafbff;
+}
+.status-table tbody tr:nth-child(even) {
+  background: #fefefe;
+}
+
+/* Hover Row */
+.status-table tbody tr:hover {
+  background: #f0f9ff;
+}
+
+/* ===== Column Alignment ===== */
+.status-table th:nth-child(2),
+.status-table td:nth-child(2) { text-align: center; width: 12%; }
+.status-table th:nth-child(3),
+.status-table td:nth-child(3) { text-align: left; width: 28%; }
+.status-table th:nth-child(4),
+.status-table td:nth-child(4) { text-align: left; width: 20%; }
+.status-table th:nth-child(5),
+.status-table td:nth-child(5) { text-align: center; width: 10%; }
+.status-table th:nth-child(6),
+.status-table td:nth-child(6) { text-align: right; width: 12%; }
+.status-table th:nth-child(7),
+.status-table td:nth-child(7),
+.status-table th:nth-child(8),
+.status-table td:nth-child(8) { text-align: center; width: 8%; }
+
+/* ===== Status Pills ===== */
+.status-pill {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+.status-pill.confirmed { background: #dcfce7; color: #166534; }
+.status-pill.pending   { background: #fff7ed; color: #92400e; }
+.status-pill.cancelled { background: #fee2e2; color: #b91c1c; }
+
+/* ===== Action Buttons ===== */
+.delete-btn {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.delete-btn:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
+/* ===== Pagination Container ===== */
+.pagination-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== Responsive Cards ===== */
+@media (max-width: 880px) {
+  .status-table thead { display: none; }
+
+  .status-table tbody tr {
+    display: block;
+    margin-bottom: 16px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: 0 4px 12px rgba(15,23,42,0.05);
+  }
+
+  .status-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 8px;
+    border: none;
+  }
+
+  .status-table tbody td::before {
+    content: attr(data-label);
+    flex: 0 0 40%;
+    color: #6b7280;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+}
+
+
+/* Search + Filter Row */
+.filter-create-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* Common styling for search + dropdown */
+.search-input,
+.filter-dropdown {
+  width: 220px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #333;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover & focus states */
+.search-input:focus,
+.filter-dropdown:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+/* Dropdown specific */
+.filter-dropdown option {
+  background: #ffffff;
+  color: #333;
+  padding: 6px;
+}
+
+@media (max-width: 480px) {
+  .search-input,
+  .filter-dropdown {
+    width: 100%;
+  }
+}

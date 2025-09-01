@@ -1,0 +1,116 @@
+/* ===== Full-Screen Overlay ===== */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
+
+/* ===== Loader Content ===== */
+.loader-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+/* ===== BookNGo Logo ===== */
+.loader-logo {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #FF6B00; 
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: pulse 1.5s ease-in-out infinite alternate;
+}
+
+/* ===== Spinner ===== */
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(0,0,0,0.2);
+  border-top: 6px solid #FF6B00; 
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+
+/* ===== Loading Text ===== */
+.loading-text {
+  font-size: 1.2rem;
+  color: #222;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-top: 5px;
+  animation: blink 1.5s infinite;
+  text-align: center;
+}
+@keyframes blink {
+  50% { opacity: 0.5; }
+}
+
+
+/* ===== Keyframes ===== */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  .loader-logo {
+    font-size: 2rem;
+  }
+  .spinner {
+    width: 60px;
+    height: 60px;
+    border-width: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loader-logo {
+    font-size: 1.6rem;
+  }
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border-width: 4px;
+  }
+  .loading-text {
+    font-size: 0.9rem;
+  }
+}
+
+.loader-overlay {
+  animation: fadeIn 0.25s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

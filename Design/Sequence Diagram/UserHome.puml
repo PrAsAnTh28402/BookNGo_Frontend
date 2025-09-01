@@ -1,0 +1,82 @@
+@startuml
+title User Landing Page - Detailed Sequence Diagram
+
+actor User
+
+User -> UserLandingPage: Open "/user/landing"
+activate UserLandingPage
+
+' ----------- INITIALIZATION -----------
+UserLandingPage -> UserLandingPage: Initialize State\n events = []\ncategories = []\nfilters = {}\npage = 1\ntotalPages = 0\nloading = true\nerror = null
+
+' ----------- RENDER NAVBAR -----------
+UserLandingPage -> UserNavbar: Render Navbar\nprops: { userName, onLogout }
+
+' ----------- FETCH CATEGORIES -----------
+UserLandingPage -> EventService: getCategories()
+activate EventService
+EventService -> API: GET /api/categories
+activate API
+API --> EventService: Response [Category[]]
+deactivate API
+EventService --> UserLandingPage: categories[]
+deactivate EventService
+
+UserLandingPage -> UserLandingPage: setCategories(categories)\nloading = false
+
+' ----------- FETCH EVENTS (Page=1, Filters={}) -----------
+UserLandingPage -> EventService: getEvents(page=1, filters={})
+activate EventService
+EventService -> API: GET /api/events?page=1&filters={}
+activate API
+API --> EventService: Response { events: Event[], totalPages }
+deactivate API
+EventService --> UserLandingPage: events[], totalPages
+deactivate EventService
+
+UserLandingPage -> UserLandingPage: setEvents(events)\nsetTotalPages(totalPages)\nloading = false
+
+' ----------- RENDER EVENTS GRID -----------
+UserLandingPage -> UserEventGrid: Render Grid\nprops: { events }
+
+UserEventGrid -> UserEventCard: Render EventCard (for each event)
+loop For each event in events[]
+  UserEventCard -> UserEventCard: Display event.title\nevent.date\nevent.location\ncategory\nimage
+end
+
+' ----------- USER INTERACTION: FILTER -----------
+User -> UserLandingPage: Apply Filter (category="Concerts")
+UserLandingPage -> UserLandingPage: setFilters({ category: "Concerts" })\npage=1\nloading=true
+
+UserLandingPage -> EventService: getEvents(page=1, filters={ category:"Concerts" })
+activate EventService
+EventService -> API: GET /api/events?page=1&category=Concerts
+activate API
+API --> EventService: Response { events: Event[], totalPages }
+deactivate API
+EventService --> UserLandingPage: events[], totalPages
+deactivate EventService
+
+UserLandingPage -> UserEventGrid: Re-render Grid with new events
+
+' ----------- USER INTERACTION: PAGINATION -----------
+User -> UserLandingPage: Go to Next Page (page=2)
+UserLandingPage -> UserLandingPage: setPage(2)\nloading=true
+
+UserLandingPage -> EventService: getEvents(page=2, filters={ category:"Concerts" })
+activate EventService
+EventService -> API: GET /api/events?page=2&category=Concerts
+activate API
+API --> EventService: Response { events: Event[], totalPages }
+deactivate API
+EventService --> UserLandingPage: events[], totalPages
+deactivate EventService
+
+UserLandingPage -> UserEventGrid: Render Grid with events (page=2)
+
+' ----------- USER INTERACTION: CLICK EVENT -----------
+User -> UserEventCard: Click "Book Now"
+UserEventCard -> UserLandingPage: onEventSelect(eventId)
+UserLandingPage -> Router: Navigate to /user/book/:eventId
+
+@enduml

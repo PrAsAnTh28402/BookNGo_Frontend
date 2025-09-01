@@ -1,0 +1,63 @@
+@startuml
+actor User
+participant UserBookingForm as "Frontend Component"
+participant Event as "Selected Event Data"
+participant BookingService as "Backend Service"
+participant Booking as "Booking Table"
+participant DB as "Database"
+
+== Pre-populate Event Data ==
+User -> UserBookingForm : Open Booking Form with event_id
+UserBookingForm -> Event : fetch event by event_id
+Event --> UserBookingForm : return event data (title, date, time, location, price, available_seats)
+UserBookingForm -> User : fetch logged-in user info
+User --> UserBookingForm : return user data (user_id, username, email, phone)
+
+note right of UserBookingForm
+Populate form fields:
+- name = username
+- email = email
+- phone = phone
+- tickets = 1
+Readonly event fields:
+- event_title = title
+- date = event_date
+- time = time
+- location = location
+- price = price
+- available_seats = available_seats
+end note
+
+== User modifies booking info ==
+User -> UserBookingForm : Enter name, email, phone, tickets
+UserBookingForm -> UserBookingForm : calculateTotalAmount()
+note right of UserBookingForm
+total_amount = tickets * price
+end note
+
+UserBookingForm -> UserBookingForm : validateInput()
+note right of UserBookingForm
+Check:
+- Name required
+- Email required & valid
+- Phone valid
+- Tickets >= 1
+- Tickets <= available_seats
+end note
+
+== User submits booking ==
+User -> UserBookingForm : Click "Confirm Booking"
+UserBookingForm -> UserBookingForm : final validateInput()
+alt validation fails
+    UserBookingForm -> User : show errors, stop submission
+else validation passes
+    UserBookingForm -> BookingService : createBooking(formData + event_id + user_id)
+    BookingService -> Booking : insert record
+    Booking -> DB : insert row
+    DB --> Booking : success / failure
+    Booking --> BookingService : return booking_id or error
+    BookingService --> UserBookingForm : success/failure response
+    UserBookingForm -> User : show alert "Booking Confirmed!" or error
+    UserBookingForm -> User : navigate to Success Page (booking info)
+end
+@enduml

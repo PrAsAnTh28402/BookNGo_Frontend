@@ -1,0 +1,50 @@
+@startuml
+' User class
+class User {
+  +user_id : INTEGER
+  +username : STRING
+  +email : STRING
+  +phone : STRING
+}
+
+' Event class
+class Event {
+  +event_id : INTEGER
+  +title : STRING
+  +event_date : DATE
+  +time : STRING
+  +location : STRING
+  +price : NUMERIC
+  +available_seats : INTEGER
+}
+
+' Booking class
+class Booking {
+  +booking_id : INTEGER
+  +user_id : INTEGER
+  +event_id : INTEGER
+  +num_tickets : INTEGER
+  +total_amount : NUMERIC
+  +status : STRING
+  +booking_date : TIMESTAMP
+}
+
+' Frontend component
+class UserBookingForm {
+  -formData : Object
+  -errors : Object
+  -submitting : Boolean
+  +handleChange()
+  +validate()
+  +handleSubmit()
+  +calculateTotalAmount()
+}
+
+' Relationships
+UserBookingForm --> User : uses (logged-in)
+UserBookingForm --> Event : pre-fills event info
+UserBookingForm --> Booking : creates new booking
+User "1" --> "0..*" Booking : makes
+Event "1" --> "0..*" Booking : booked in
+
+@enduml

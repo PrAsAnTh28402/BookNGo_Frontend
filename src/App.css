@@ -1,0 +1,42 @@
+/* Reset margins & paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Keep full height & width for root elements */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Global button styles */
+button {
+  cursor: pointer;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: #ffa500;
+  color: #fff;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #ff8c00;
+}
+
+/* Global input/select styles */
+input, select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #ffa500;
+}

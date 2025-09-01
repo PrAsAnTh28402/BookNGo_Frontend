@@ -1,0 +1,32 @@
+@startuml SignIn
+actor User
+participant LoginComponent as "Login.jsx"
+participant AuthService
+participant AuthApi
+participant Backend
+
+User -> LoginComponent: open Login page
+LoginComponent -> LoginComponent: initialize state (formData, loading, error)
+User -> LoginComponent: types in Email input
+LoginComponent -> LoginComponent: update formData.email
+User -> LoginComponent: types in Password input
+LoginComponent -> LoginComponent: update formData.password
+User -> LoginComponent: clicks "Login"
+LoginComponent -> LoginComponent: prevent default, set loading = true, error = ""
+LoginComponent -> AuthService: call loginUser(formData)
+AuthService -> AuthApi: call loginApi(formData)
+AuthApi -> Backend: POST /auth/login
+alt Backend returns 200 OK
+    Backend --> AuthApi: response with token
+    AuthApi --> AuthService: resolve
+    AuthService --> LoginComponent: return token
+    LoginComponent -> localStorage: store token
+    LoginComponent -> LoginComponent: navigate("/user/home")
+else Backend returns 400 / invalid credentials
+    Backend --> AuthApi: error response
+    AuthApi --> AuthService: throw error
+    AuthService --> LoginComponent: propagate error
+    LoginComponent -> LoginComponent: set error = error message
+end
+LoginComponent -> LoginComponent: set loading = false
+@enduml

@@ -1,0 +1,101 @@
+@startuml
+actor Admin
+participant AdminLandingPage
+participant Navbar
+participant StatsBar
+participant FilterBar
+participant EventGrid
+participant EventCard
+participant EventProgressDonut
+participant InfiniteScrollHandler
+participant BackendAPI
+
+Admin -> AdminLandingPage : open page
+activate AdminLandingPage
+
+AdminLandingPage -> BackendAPI : GET /stats
+activate BackendAPI
+note right: Loading stats
+BackendAPI --> AdminLandingPage : stats data
+deactivate BackendAPI
+AdminLandingPage -> StatsBar : render(stats)
+activate StatsBar
+note right: Display totalEvents, activeEvents, cancelledEvents, totalBookings
+StatsBar --> AdminLandingPage : rendered
+deactivate StatsBar
+
+AdminLandingPage -> BackendAPI : GET /events?page=1&filters=default
+activate BackendAPI
+note right: set state.loading = true
+BackendAPI --> AdminLandingPage : events data
+note left: state.events = response.data\nstate.hasMore = check more pages
+AdminLandingPage -> EventGrid : render(events)
+activate EventGrid
+note right: For each event:
+EventGrid -> EventCard : create card per event
+activate EventCard
+EventCard -> EventProgressDonut : calculate % booked
+activate EventProgressDonut
+EventProgressDonut --> EventCard : bookedPercent
+EventCard -> EventCard : determine status\nif !is_active -> Cancelled\nelse if available_seats==0 -> Sold Out\nelse Active
+EventCard --> EventGrid : rendered
+deactivate EventProgressDonut
+deactivate EventCard
+EventGrid --> AdminLandingPage : grid rendered
+deactivate EventGrid
+note right: set state.loading = false
+deactivate AdminLandingPage
+
+Admin -> FilterBar : change search/category/status
+activate FilterBar
+FilterBar -> AdminLandingPage : handleFilterChange()
+activate AdminLandingPage
+note right: reset page=1, loading=true
+AdminLandingPage -> BackendAPI : GET /events?page=1&filters=updated
+activate BackendAPI
+BackendAPI --> AdminLandingPage : filtered events
+note left: state.events = response.data\nstate.hasMore = check more pages
+AdminLandingPage -> EventGrid : render(updated events)
+EventGrid --> AdminLandingPage : grid updated
+deactivate BackendAPI
+note right: set state.loading = false
+deactivate AdminLandingPage
+deactivate FilterBar
+
+Admin -> InfiniteScrollHandler : scroll bottom detected
+activate InfiniteScrollHandler
+note right: check state.hasMore and state.loading
+InfiniteScrollHandler -> AdminLandingPage : load next page
+activate AdminLandingPage
+AdminLandingPage -> BackendAPI : GET /events?page+1&filters=current
+activate BackendAPI
+BackendAPI --> AdminLandingPage : events data
+note left: append new events to state.events
+AdminLandingPage -> EventGrid : append new EventCards
+EventGrid --> AdminLandingPage : grid updated
+deactivate BackendAPI
+deactivate AdminLandingPage
+deactivate InfiniteScrollHandler
+
+Admin -> EventCard : click Edit/Delete
+activate EventCard
+EventCard -> AdminLandingPage : open modal with pre-populated data
+AdminLandingPage -> BackendAPI : call edit/delete API
+activate BackendAPI
+BackendAPI --> AdminLandingPage : success/failure
+AdminLandingPage -> EventGrid : update/remove EventCard
+EventGrid --> AdminLandingPage : grid updated
+deactivate BackendAPI
+deactivate EventCard
+
+Admin -> Navbar : click Logout
+activate Navbar
+Navbar -> AdminLandingPage : handleLogout()
+AdminLandingPage -> BackendAPI : call logout API
+activate BackendAPI
+BackendAPI --> AdminLandingPage : success
+AdminLandingPage -> Admin : redirect to Login Page
+deactivate BackendAPI
+deactivate Navbar
+
+@enduml

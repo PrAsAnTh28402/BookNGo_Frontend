@@ -1,0 +1,23 @@
+@startuml
+class AddEventForm {
+    - title: string
+    - location: string
+    - event_date: string
+    - time: string
+    - description: string
+    - category_id: string
+    - image_url: string
+    - capacity: number
+    - price: number
+    - errors: object
+    + handleChange(event)
+    + handleSubmit()
+    + validateForm(): boolean
+}
+
+class EventService {
+    + createEvent(eventData)
+}
+
+AddEventForm --> EventService : calls API
+@enduml

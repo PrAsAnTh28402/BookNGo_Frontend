@@ -1,0 +1,156 @@
+/* Page background */
+.admin-landing-page {
+  background-color: #f0f0f0; 
+  min-height: 100vh;
+  padding-bottom: 10px;
+}
+
+/* Container for stats + filters + grid */
+.event-grid-wrapper {
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 6px;
+  max-width: 3600px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Filter + Search + Create Event Row */
+.filter-create-row {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin: 20px;
+  gap: 20px; 
+  flex-wrap: wrap;
+}
+
+/* Wrapper for search + filters */
+.filters-wrapper {
+  display: flex;
+  gap: 40px; 
+  flex: 1; 
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* FilterBar inputs */
+.filter-bar input[type="text"] {
+  flex: 1; 
+  min-width: 240px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.filter-bar select {
+  flex: 1; 
+  min-width: 120px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid black;
+}
+
+/* Create Event button */
+.create-event-button {
+  background-color: #ffa500; 
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  flex-shrink: 0;
+}
+
+.create-event-button:hover {
+  background-color: black;
+  transform: translateY(-2px);
+  color: #ffa500;
+}
+
+.create-event-button:active {
+  transform: translateY(1px);
+}
+
+/* Event grid */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.pagination-container button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pagination-container button:hover {
+  background-color: #ffa500;
+  color: black;
+}
+
+.pagination-container button.active {
+  background-color: black;
+  color: #fff;
+  border-color: red;
+}
+
+/* Error message */
+.error {
+  color: red;
+  text-align: center;
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .filter-create-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .filters-wrapper {
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .create-event-button {
+    width: 100%;
+  }
+
+  .filter-bar input[type="text"],
+  .filter-bar select {
+    width: 80%;
+  }
+}
+
+.admin-landing-page .filter-bar select {
+  flex: 1;
+  min-width: 120px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  color:red;
+}
+
