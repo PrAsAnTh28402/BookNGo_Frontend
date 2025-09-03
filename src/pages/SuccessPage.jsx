@@ -2,8 +2,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/SuccessPage.css";
-import Confirmation from "../../public/Confrimation.gif";
-import RetroTicket from "../../public/Retro_Ticket.png";
 
 const SuccessPage = () => {
   const location = useLocation();
@@ -28,12 +26,12 @@ const SuccessPage = () => {
       <div className="left-container">
         <div className="ticket-wrapper">
           <img
-            src={RetroTicket}
+            src="/Retro_Ticket.png"
             alt="Ticket"
             className="ticket-image"
           />
           <img
-            src={Confirmation}
+            src="/Confrimation.gif"
             alt="Success"
             className="tick-overlay"
           />

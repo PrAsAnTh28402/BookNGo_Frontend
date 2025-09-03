@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../styles/Signup.css";
-import logo from "../../public/BookNGo.png";
 import { useNavigate } from "react-router-dom";
 import { signupUser } from "../Service/authService";
 
@@ -67,7 +66,7 @@ const Signup = () => {
       {/* LEFT SIDE */}
       <div className="signup-left">
         <div className="logo-wrapper">
-          <img src={logo} alt="BookNGo Logo" className="signup-logo" />
+          <img src="/BookNGo.png" alt="BookNGo Logo" className="signup-logo" />
           <p className="brand-text">From Click to Celebration 🎉</p>
         </div>
       </div>

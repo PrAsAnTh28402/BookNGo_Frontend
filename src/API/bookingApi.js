@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/bookngo/bookings";
+const API_BASE_URL = `https://bookngo-backend-i9pp.onrender.com/bookngo/bookings`;
 
 // Helper to get token from localStorage
 const getAuthToken = () => localStorage.getItem("token");
