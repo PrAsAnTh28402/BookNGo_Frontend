@@ -66,7 +66,7 @@ const EventCard = ({ event, isAdmin }) => {
           />
         ) : (
           <img
-            src={event.image_url || "/default-banner.jpg"}
+            src={`/${event.event_id}.jpg` || "/default-banner.jpg" || `/${event.event_id}.PNG`}
             alt={event.event_name}
             className="event-banner"
           />

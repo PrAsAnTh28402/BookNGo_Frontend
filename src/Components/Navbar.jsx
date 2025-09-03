@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../styles/Navbar.css";
-import BookNGo from "../../public/BookNGo.png";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -29,7 +28,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       {/* Logo */}
-      <img className="logo" src={BookNGo} alt="BookNGo Logo" />
+      <img className="logo" src="/BookNGo.png" alt="BookNGo Logo" />
 
       {/* Hamburger toggle (only on mobile) */}
       <div
