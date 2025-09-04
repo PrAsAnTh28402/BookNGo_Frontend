@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/EventBooking.css";
 import FullScreenLoader from "../Components/Loader";
-import { createBooking } from "../Service/bookingService";
+import { createBooking } from "../Service/BookingService";
 import { getLoggedInUser } from "../Service/authService";
 
 const BookingForm = () => {

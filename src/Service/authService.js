@@ -1,4 +1,4 @@
-import { signupApi, loginApi } from "../api/authApi";
+import { signupApi, loginApi } from "../API/authApi";
 
 export const signupUser = async (userData) => {
   try {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import Pagination from "../Components/Pagination";
 import FullScreenLoader from "../Components/Loader";
-import { getUserBookings } from '../Service/bookingService';
+import { getUserBookings } from "../Service/BookingService";
 import UserBookingTable from "../Components/UserPrevBook_Table";
 
 const UserPreviousBookingsPage = () => {

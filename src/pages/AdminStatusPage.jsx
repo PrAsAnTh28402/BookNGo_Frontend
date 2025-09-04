@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import BookingTable from "../Components/BookingTable";
-// import { getAllBookings, removeBooking } from '../Service/bookingService';
 import { getAllBookings, removeBooking } from "../Service/BookingService";
 import "../styles/AdminStatusPage.css";
 import FullScreenLoader from "../Components/Loader";

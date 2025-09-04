@@ -1,9 +1,10 @@
+
 import {
-  getBookings as getBookingsApi,
-  deleteBooking as deleteBookingApi,
-  createBookingApi as UsersbookingApi,
-  getUserIndBookings as getUserBookingsApi,
-} from "../api/bookingApi";
+    getBookings as getBookingsApi,
+    deleteBooking as deleteBookingApi,
+    createBookingApi as UsersbookingApi,
+    getUserIndBookings as getUserBookingsApi
+} from "../API/bookingApi";
 
 // Fetch all bookings
 export const getAllBookings = async ({

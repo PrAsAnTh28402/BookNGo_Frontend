@@ -6,7 +6,7 @@ import {
     createEventApi,
     fetchCategoriesApi,
     fetchEventByIdApi
-} from '../api/eventApi';
+} from '../API/eventApi';
 
 export const getEvents= async(page, filters)=>{
     try{
