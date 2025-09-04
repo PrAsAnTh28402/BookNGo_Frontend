@@ -1,8 +1,9 @@
+
 import {
-  getBookings as getBookingsApi,
-  deleteBooking as deleteBookingApi,
-  createBookingApi as UsersbookingApi,
-  getUserIndBookings as getUserBookingsApi,
+    getBookings as getBookingsApi,
+    deleteBooking as deleteBookingApi,
+    createBookingApi as UsersbookingApi,
+    getUserIndBookings as getUserBookingsApi
 } from "../API/bookingApi";
 
 // Fetch all bookings
