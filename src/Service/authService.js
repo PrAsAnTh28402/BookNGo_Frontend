@@ -1,4 +1,3 @@
-// src/services/authService.js
 import { signupApi, loginApi } from "../api/authApi";
 
 export const signupUser = async (userData) => {
