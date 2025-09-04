@@ -1,4 +1,4 @@
-import { fetchStatesApi, fetchCitiesApi } from "../API/locationApi";
+import { fetchStates as fetchStatesApi, fetchCities as fetchCitiesApi} from "../api/locationApi";
 
 export const getStates = async () => {
   try {

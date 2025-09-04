@@ -3,7 +3,7 @@ import {
   deleteBooking as deleteBookingApi,
   createBookingApi as UsersbookingApi,
   getUserIndBookings as getUserBookingsApi,
-} from "../API/bookingApi";
+} from "../api/bookingApi";
 
 // Fetch all bookings
 export const getAllBookings = async ({
